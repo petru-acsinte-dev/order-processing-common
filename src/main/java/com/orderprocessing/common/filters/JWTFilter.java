@@ -19,6 +19,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
+/**
+ * Bean used to intercept every request.
+ * Extracts JWT from Authorization header, reads the username and roles directly from token claims.
+ * Sets Spring SecurityContext.
+ * No database or UserDetailsService dependencies.
+ */
 public class JWTFilter extends OncePerRequestFilter {
 
 	private final JWTValidator jwtValidator;

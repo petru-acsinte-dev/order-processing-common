@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * Includes methods that extract the username and roles from JWT and that validate the JWT.
+ */
 public interface JWTValidator {
 
 	/**
@@ -14,7 +17,7 @@ public interface JWTValidator {
 	String getUsername(String token);
 
 	/**
-	 * Confirms whethere the token is valid.
+	 * Confirms whether the token is valid.
 	 * @param token Token to validate.
 	 * @param userDetails The user specific information.
 	 * @return True if token is valid, false otherwise.
