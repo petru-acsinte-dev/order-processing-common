@@ -62,4 +62,11 @@
 	        <scope>runtime</scope>
 	    </dependency>
 	</dependencies>
+	
+	<distributionManagement>
+	    <repository>
+	        <id>github</id>
+	        <url>https://maven.pkg.github.com/petru-acsinte-dev/order-processing-common</url>
+	    </repository>
+	</distributionManagement>
 </project>
