@@ -1,4 +1,4 @@
-package spring.orders.demo.shared;
+package com.orderprocessing.common.tests;
 
 import java.util.List;
 

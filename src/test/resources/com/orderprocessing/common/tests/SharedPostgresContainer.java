@@ -1,4 +1,4 @@
-package spring.orders.demo.shared;
+package com.orderprocessing.common.tests;
 
 import org.flywaydb.core.Flyway;
 import org.testcontainers.containers.PostgreSQLContainer;
