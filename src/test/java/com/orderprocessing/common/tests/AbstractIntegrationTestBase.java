@@ -47,12 +47,6 @@ public abstract class AbstractIntegrationTestBase {
         registry.add("spring.datasource.password", POSTGRES::getPassword); //$NON-NLS-1$
     }
 
-	private String bearer;
-
-	public String getBearer() {
-		return bearer;
-	}
-
 	protected abstract Logger getLog();
 
 }
