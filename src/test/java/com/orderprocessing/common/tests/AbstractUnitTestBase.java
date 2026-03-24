@@ -11,8 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import spring.orders.demo.constants.Constants;
-
 @Tag("unit")
 @ExtendWith(MockitoExtension.class)
 public abstract class AbstractUnitTestBase {
@@ -30,7 +28,8 @@ public abstract class AbstractUnitTestBase {
 	protected void setupAdmin() {
 		SecurityContextHolder.getContext().setAuthentication(
 				new UsernamePasswordAuthenticationToken(
-						Constants.ADMIN, Constants.ADMIN, List.of(new SimpleGrantedAuthority("ROLE_ADMIN")))); //$NON-NLS-1$
+						TestConstants.ADMIN, TestConstants.ADMIN,
+						List.of(new SimpleGrantedAuthority("ROLE_ADMIN")))); //$NON-NLS-1$
 	}
 
 	protected void setupUserNoRole(String username, String password) {
