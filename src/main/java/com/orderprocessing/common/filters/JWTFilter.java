@@ -1,12 +1,12 @@
 package com.orderprocessing.common.filters;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -22,11 +22,9 @@ import jakarta.servlet.http.HttpServletResponse;
 public class JWTFilter extends OncePerRequestFilter {
 
 	private final JWTValidator jwtValidator;
-	private final UserDetailsService userDetailsService;
 
-	public JWTFilter(JWTValidator jwtValidator, UserDetailsService userDetailsService) {
+	public JWTFilter(JWTValidator jwtValidator) {
 		this.jwtValidator = jwtValidator;
-		this.userDetailsService = userDetailsService;
 	}
 
 	@Override
@@ -43,17 +41,15 @@ public class JWTFilter extends OncePerRequestFilter {
 		}
 
 		final String token = authHeader.substring(Constants.BEARER.length());
-
 		final String username = jwtValidator.getUsername(token);
 
 		if ((null != username) && (null == SecurityContextHolder.getContext().getAuthentication())) {
-			final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			final List<String> roles = jwtValidator.getRoles(token);
+            final List<SimpleGrantedAuthority> authorities = roles.stream().map(SimpleGrantedAuthority::new).toList();
 
-			if (jwtValidator.isTokenValid(token, userDetails)) {
-				final var authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-				SecurityContextHolder.getContext().setAuthentication(authToken);
-			}
+			final var authToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
+			authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			SecurityContextHolder.getContext().setAuthentication(authToken);
 		}
 
 		filterChain.doFilter(request, response);
