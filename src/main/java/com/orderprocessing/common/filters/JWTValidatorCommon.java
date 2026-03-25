@@ -26,6 +26,10 @@ public abstract class JWTValidatorCommon implements JWTValidator {
 		this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
 	}
 
+	protected SecretKey getSecret() {
+		return secretKey;
+	}
+
 	@Override
 	public boolean isTokenValid(String token, UserDetails userDetails) {
 		final boolean expired = isTokenExpired(token);
