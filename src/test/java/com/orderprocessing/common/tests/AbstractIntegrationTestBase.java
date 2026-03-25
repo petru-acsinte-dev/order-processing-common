@@ -2,6 +2,8 @@ package com.orderprocessing.common.tests;
 
 import static com.orderprocessing.common.tests.SharedPostgresContainer.POSTGRES;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.Tag;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +46,15 @@ public abstract class AbstractIntegrationTestBase {
     }
 
 	protected abstract Logger getLog();
+
+	private String bearer;
+
+	public String getBearer() {
+		return bearer;
+	}
+
+	protected void mockLogin(String username, UUID externalId, String role, String password) {
+		bearer = TestJwtTokenGenerator.generateToken(username, externalId, role, password);
+	}
 
 }
