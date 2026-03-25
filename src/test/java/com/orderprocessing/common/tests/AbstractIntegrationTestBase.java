@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.orderprocessing.common.constants.Constants;
 
 @Tag("integration")
 @Testcontainers
@@ -50,11 +51,11 @@ public abstract class AbstractIntegrationTestBase {
 	private String bearer;
 
 	public String getBearer() {
-		return bearer;
+		return Constants.BEARER + bearer;
 	}
 
-	protected void mockLogin(String username, UUID externalId, String role, String password) {
-		bearer = TestJwtTokenGenerator.generateToken(username, externalId, role, password);
+	protected void mockLogin(String username, UUID externalId, String role, String secret) {
+		bearer = TestJwtTokenGenerator.generateToken(username, externalId, role, secret);
 	}
 
 }

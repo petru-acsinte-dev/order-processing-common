@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,6 +30,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * No database or UserDetailsService dependencies.
  */
 public class JWTFilter extends OncePerRequestFilter {
+
+	Logger log = LoggerFactory.getLogger(JWTFilter.class);
 
 	private final JWTValidator jwtValidator;
 
@@ -61,6 +65,9 @@ public class JWTFilter extends OncePerRequestFilter {
 			authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 			SecurityContextHolder.getContext().setAuthentication(authToken);
 		}
+
+		log.debug("Authentication set: {}",  //$NON-NLS-1$
+				SecurityContextHolder.getContext().getAuthentication());
 
 		filterChain.doFilter(request, response);
 	}
