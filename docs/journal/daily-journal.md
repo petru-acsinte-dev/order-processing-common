@@ -17,3 +17,4 @@ OrderProcessor - common library - Daily journal
 -
 - made JWT self-contained to include user external id; added custom principal to the security context
 - moved JWT validation into common and added mock JWT for orders and shipments ITs
+- added a global controller advice to handle bad requests (with invalid request body)
