@@ -19,6 +19,8 @@ public final class Constants {
 
 	public static final String BEARER = "Bearer "; //$NON-NLS-1$
 
+	public static final String MESSAGE_FILE_BASE_NAME = "ordermessages"; //$NON-NLS-1$
+
     public static final String V3_API_DOCS = "/v3/api-docs/**"; //$NON-NLS-1$
 	public static final String SWAGGER_UI = "/swagger-ui/**"; //$NON-NLS-1$
 	public static final String ACTUATOR_INFO = "/actuator/info"; //$NON-NLS-1$
