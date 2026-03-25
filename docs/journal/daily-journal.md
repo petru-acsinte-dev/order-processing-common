@@ -10,3 +10,10 @@ OrderProcessor - common library - Daily journal
 2026-03-24
 -
 - added global config mapper (common parent class for all order processing mappers)
+- added common test classes and test constants
+- security utilities
+
+2026-03-25
+-
+- made JWT self-contained to include user external id; added custom principal to the security context
+- moved JWT validation into common and added mock JWT for orders and shipments ITs

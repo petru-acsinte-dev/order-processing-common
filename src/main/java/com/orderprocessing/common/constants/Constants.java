@@ -1,11 +1,17 @@
 package com.orderprocessing.common.constants;
 
+import java.util.UUID;
+
 public final class Constants {
 
 	// This class should not be instantiated
 	private Constants() {}
 
 	public static final String ADMIN_ROLE = "ROLE_ADMIN"; //$NON-NLS-1$
+
+	public static final UUID ADMIN_UUID0 = UUID.fromString("00000000-0000-0000-0000-000000000000"); //$NON-NLS-1$
+
+	public static final String USER_ROLE = "ROLE_USER"; //$NON-NLS-1$
 
 	public static final String ROLES = "roles"; //$NON-NLS-1$
 
