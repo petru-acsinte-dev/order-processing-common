@@ -2,6 +2,7 @@ package com.orderprocessing.common.filters;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.orderprocessing.common.constants.Constants;
+import com.orderprocessing.common.security.OrdersPrincipal;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -48,12 +50,14 @@ public class JWTFilter extends OncePerRequestFilter {
 
 		final String token = authHeader.substring(Constants.BEARER.length());
 		final String username = jwtValidator.getUsername(token);
+		final UUID externalId = jwtValidator.getExternalId(token);
+		final OrdersPrincipal principal = new OrdersPrincipal(username, externalId);
 
 		if ((null != username) && (null == SecurityContextHolder.getContext().getAuthentication())) {
 			final List<String> roles = jwtValidator.getRoles(token);
             final List<SimpleGrantedAuthority> authorities = roles.stream().map(SimpleGrantedAuthority::new).toList();
 
-			final var authToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
+			final var authToken = new UsernamePasswordAuthenticationToken(principal, null, authorities);
 			authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 			SecurityContextHolder.getContext().setAuthentication(authToken);
 		}

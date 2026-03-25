@@ -1,5 +1,7 @@
 package com.orderprocessing.common.security;
 
+import java.util.UUID;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -17,6 +19,16 @@ public final class SecurityUtils {
 	 */
 	public static String getUsername() {
 		return SecurityContextHolder.getContext().getAuthentication().getName();
+	}
+
+	/**
+	 * Obtains the user external id associated with the current security context.
+	 * @return The user external id
+	 */
+	public static UUID getExternalId() {
+		final OrdersPrincipal principal =
+				(OrdersPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return principal.externalId();
 	}
 
 	/**
