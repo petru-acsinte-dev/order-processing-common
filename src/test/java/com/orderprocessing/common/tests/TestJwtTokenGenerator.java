@@ -1,6 +1,5 @@
 package com.orderprocessing.common.tests;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -10,6 +9,7 @@ import javax.crypto.SecretKey;
 import com.orderprocessing.common.constants.Constants;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 public class TestJwtTokenGenerator {
@@ -26,7 +26,7 @@ public class TestJwtTokenGenerator {
     									UUID externalId,
     									List<String> roles,
     									String secret) {
-        final SecretKey key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    	final SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
         return Jwts.builder()
                 .subject(username)
                 .claim(Constants.ROLES, roles)
