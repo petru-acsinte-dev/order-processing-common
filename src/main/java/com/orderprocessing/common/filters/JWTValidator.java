@@ -1,6 +1,7 @@
 package com.orderprocessing.common.filters;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,7 +12,7 @@ public interface JWTValidator {
 
 	/**
 	 * Returns the username associated with the specified token.
-	 * @param token The JWT token.
+	 * @param token The JWT.
 	 * @return The associated username.
 	 */
 	String getUsername(String token);
@@ -25,10 +26,17 @@ public interface JWTValidator {
 	boolean isTokenValid(String token, UserDetails userDetails);
 
 	/**
-	 * Returns the roles in the self-contained JWT.
+	 * Returns the roles from the self-contained JWT.
 	 * @param token
-	 * @return
+	 * @return List of roles present in the token.
 	 */
 	List<String> getRoles(String token);
+
+	/**
+	 * Extracts the user external id from the self-contained JWT.
+	 * @param token The JWT.
+	 * @return The user external id.
+	 */
+	UUID getExternalId(String token);
 
 }
