@@ -7,6 +7,8 @@ public final class Constants {
 
 	public static final String ADMIN_ROLE = "ROLE_ADMIN"; //$NON-NLS-1$
 
+	public static final String ROLES = "roles"; //$NON-NLS-1$
+
 	public static final String PARAM_EXTERNAL_ID = "externalId"; //$NON-NLS-1$
 
 	public static final String BEARER = "Bearer "; //$NON-NLS-1$
