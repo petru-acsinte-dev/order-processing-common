@@ -25,6 +25,9 @@ public final class Constants {
 	public static final String SWAGGER_UI = "/swagger-ui/**"; //$NON-NLS-1$
 	public static final String ACTUATOR_INFO = "/actuator/info"; //$NON-NLS-1$
 	public static final String ACTUATOR_HEALTH = "/actuator/health"; //$NON-NLS-1$
+	public static final String ACTUATOR_OTHERS = "/actuator/**"; //$NON-NLS-1$
+
+	public static final String CORRELATION_HEADER = "X-Request-ID"; //$NON-NLS-1$
 
 	// response paging
 	public static final int PAGE_SIZE_HARD_LIMIT = 10_000;
