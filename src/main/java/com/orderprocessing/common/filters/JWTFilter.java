@@ -66,9 +66,6 @@ public class JWTFilter extends OncePerRequestFilter {
 			SecurityContextHolder.getContext().setAuthentication(authToken);
 		}
 
-		log.debug("Authentication set: {}",  //$NON-NLS-1$
-				SecurityContextHolder.getContext().getAuthentication());
-
 		filterChain.doFilter(request, response);
 	}
 
