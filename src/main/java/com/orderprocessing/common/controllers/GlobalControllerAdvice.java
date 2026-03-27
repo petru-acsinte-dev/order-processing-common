@@ -22,7 +22,9 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleMessageNotReadable(HttpMessageNotReadableException ex, Locale locale) {
-		log.error("Exception caught: {}", ex.getMessage(), ex); //$NON-NLS-1$
+		log.error("Exception caught: {}",  //$NON-NLS-1$
+				(null == ex.getMessage() ? ex.getClass().getCanonicalName() : ex.getMessage()),
+				ex);
         return new ApiError(ApiErrors.INCORRECT_INPUT, MessageKeys.INVALID_REQUEST_BODY);
     }
 
