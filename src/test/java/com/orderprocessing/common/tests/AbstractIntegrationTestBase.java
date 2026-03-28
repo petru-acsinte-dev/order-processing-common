@@ -1,6 +1,7 @@
 package com.orderprocessing.common.tests;
 
 import static com.orderprocessing.common.tests.SharedPostgresContainer.POSTGRES;
+import static com.orderprocessing.common.tests.SharedRabbitMQContainer.RABBITMQ;
 
 import java.util.UUID;
 
@@ -44,6 +45,11 @@ public abstract class AbstractIntegrationTestBase {
         registry.add("spring.datasource.url", POSTGRES::getJdbcUrl); //$NON-NLS-1$
         registry.add("spring.datasource.username", POSTGRES::getUsername); //$NON-NLS-1$
         registry.add("spring.datasource.password", POSTGRES::getPassword); //$NON-NLS-1$
+
+        registry.add("spring.rabbitmq.host", RABBITMQ::getHost); //$NON-NLS-1$
+        registry.add("spring.rabbitmq.port", RABBITMQ::getAmqpPort); //$NON-NLS-1$
+        registry.add("spring.rabbitmq.username", RABBITMQ::getAdminUsername); //$NON-NLS-1$
+        registry.add("spring.rabbitmq.password", RABBITMQ::getAdminPassword); //$NON-NLS-1$
     }
 
 	protected abstract Logger getLog();
