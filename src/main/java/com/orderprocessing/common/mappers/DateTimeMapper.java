@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-import org.mapstruct.Mapper;
-
-@Mapper(config = GlobalMapperConfig.class)
-public interface DateTimeMapper extends GlobalMapperConfig {
+public interface DateTimeMapper {
 
 	default OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime) {
         if (localDateTime == null) {
