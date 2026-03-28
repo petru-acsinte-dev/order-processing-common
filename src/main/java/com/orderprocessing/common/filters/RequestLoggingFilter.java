@@ -9,6 +9,8 @@ import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.orderprocessing.common.constants.Constants;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,9 +24,6 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
 	private static final String PATH = "path"; //$NON-NLS-1$
 	private static final String METHOD = "method"; //$NON-NLS-1$
 
-	private static final String REQUEST_ID = "requestId"; //$NON-NLS-1$
-	private static final String REQUEST_ID_HEADER = "X-Request-Id"; //$NON-NLS-1$
-
 	@Override
 	protected void doFilterInternal(HttpServletRequest request,
 									HttpServletResponse response,
@@ -33,16 +32,16 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
 
 		final long startTime = System.currentTimeMillis();
 
-		String requestId = request.getHeader(REQUEST_ID_HEADER);
+		String requestId = request.getHeader(Constants.CORRELATION_HEADER);
 
 		if (requestId == null || requestId.isBlank()) {
             requestId = UUID.randomUUID().toString().substring(0, 8);
         }
 
 		try {
-            MDC.put(REQUEST_ID, requestId);
+            MDC.put(Constants.CORRELATION_ID, requestId);
 
-            response.setHeader(REQUEST_ID_HEADER, requestId);
+            response.setHeader(Constants.CORRELATION_HEADER, requestId);
 
             log.atDebug()
             .addKeyValue(METHOD, request.getMethod())

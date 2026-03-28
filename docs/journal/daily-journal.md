@@ -22,3 +22,15 @@ OrderProcessor - common library - Daily journal
 2026-03-26
 -
 - added an interceptor for Feign calls to propagate X-Request-ID across microservices
+
+2026-03-27
+-
+- updated readme with more details about the common project
+- revisited serviceability; introduced a request logging filter with durations
+
+2026-03-27
+-
+- moved events used for inter-service communication to common
+- added support for RabbitMQ (including testcontainers); configured one exchange and 2 queues for order confirmation and shipment
+- Feign client cleanup
+- expanded events to include timestamp and correlationId (requires adoption)

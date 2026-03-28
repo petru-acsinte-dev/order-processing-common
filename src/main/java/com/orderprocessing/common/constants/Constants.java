@@ -28,6 +28,7 @@ public final class Constants {
 	public static final String ACTUATOR_OTHERS = "/actuator/**"; //$NON-NLS-1$
 
 	public static final String CORRELATION_HEADER = "X-Request-ID"; //$NON-NLS-1$
+	public static final String CORRELATION_ID = "requestId";  //$NON-NLS-1$
 
 	// response paging
 	public static final int PAGE_SIZE_HARD_LIMIT = 10_000;
