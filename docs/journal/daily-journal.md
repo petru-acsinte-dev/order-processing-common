@@ -28,9 +28,10 @@ OrderProcessor - common library - Daily journal
 - updated readme with more details about the common project
 - revisited serviceability; introduced a request logging filter with durations
 
-2026-03-27
+2026-03-28
 -
 - moved events used for inter-service communication to common
 - added support for RabbitMQ (including testcontainers); configured one exchange and 2 queues for order confirmation and shipment
 - Feign client cleanup
 - expanded events to include timestamp and correlationId (requires adoption)
+- Replaced LocalDateTime with OffsetDateTime in API responses
