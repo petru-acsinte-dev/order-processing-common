@@ -35,3 +35,7 @@ OrderProcessor - common library - Daily journal
 - Feign client cleanup
 - expanded events to include timestamp and correlationId (requires adoption)
 - Replaced LocalDateTime with OffsetDateTime in API responses
+
+2026-04-06
+-
+- found and fixed an issue (#1) related to a hardcoded OpenAPI service title
