@@ -3,8 +3,20 @@
 Shared library used by all microservices in the 
 [Order Processing](https://github.com/petru-acsinte-dev) portfolio project.
 
-Published to GitHub Packages and consumed as a Maven dependency. Contains 
-cross-cutting concerns that would otherwise be duplicated across services.
+Published to GitHub Packages and consumed as a Maven dependency. 
+
+Contains cross-cutting concerns shared across all three microservices — security, messaging, observability, and error handling.
+
+Current version: `0.4.4-SNAPSHOT`
+
+### Usage
+```xml
+<dependency>
+    <groupId>com.orderprocessing</groupId>
+    <artifactId>order-processing-common</artifactId>
+    <version>0.4.4-SNAPSHOT</version>
+</dependency>
+```
 
 ### Contents
 - JWT validation (`JWTValidator`, `JWTValidatorCommon`)
@@ -16,6 +28,7 @@ cross-cutting concerns that would otherwise be duplicated across services.
 - Shared DTOs and `PagedResponse<T>`
 - OpenAPI/Swagger configuration
 - Shared test infrastructure (`AbstractIntegrationTestBase`, `SharedPostgresContainer`, `SharedRabbitMQContainer`, `TestJwtTokenGenerator`)
+- Nginx reverse proxy configuration (`src/main/resources/other/nginx.conf`)
 
 ### Related
 - [order-processing-users](https://github.com/petru-acsinte-dev/order-processing-users)
