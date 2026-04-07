@@ -9,11 +9,13 @@ cross-cutting concerns that would otherwise be duplicated across services.
 ### Contents
 - JWT validation (`JWTValidator`, `JWTValidatorCommon`)
 - Security filter chain components (`JWTFilter`, `RequestIdFilter`)
-- Correlation ID propagation via OpenFeign (`FeignCorrelationInterceptor`)
+- Correlation ID propagation (`X-Request-ID` via MDC, carried in message events)
+- RabbitMQ topology configuration (topic exchange, queues, DLQs, bindings)
+- Message events (`OrderConfirmedEvent`, `OrderShippedEvent`)
 - Base exception hierarchy and global error handling
 - Shared DTOs and `PagedResponse<T>`
 - OpenAPI/Swagger configuration
-- Shared test infrastructure (`AbstractIntegrationTestBase`, `TestJwtTokenGenerator`)
+- Shared test infrastructure (`AbstractIntegrationTestBase`, `SharedPostgresContainer`, `SharedRabbitMQContainer`, `TestJwtTokenGenerator`)
 
 ### Related
 - [order-processing-users](https://github.com/petru-acsinte-dev/order-processing-users)
