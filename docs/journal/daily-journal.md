@@ -1,6 +1,9 @@
 OrderProcessor - common library - Daily journal
 =
 
+> Most functionality in this library originated in the monolith phase. 
+> See the [monolith journal](https://github.com/petru-acsinte-dev/order-processing-monolith/blob/master/OrdersProcessor/docs/journal/daily-journal.md) for the full design history.
+
 2026-03-23
 -
 - defined a new GitHub repository associated with a new common Maven project
@@ -32,10 +35,10 @@ OrderProcessor - common library - Daily journal
 -
 - moved events used for inter-service communication to common
 - added support for RabbitMQ (including testcontainers); configured one exchange and 2 queues for order confirmation and shipment
-- Feign client cleanup
+- Feign client cleanup; deleted FeignCorrelationInterceptor, Spring Cloud BOM, and all Feign dependencies; inter-service communication fully replaced by RabbitMQ async messaging
 - expanded events to include timestamp and correlationId (requires adoption)
 - Replaced LocalDateTime with OffsetDateTime in API responses
 
 2026-04-06
 -
-- found and fixed an issue (#1) related to a hardcoded OpenAPI service title
+- found and fixed an issue (#1) — OpenAPI title was hardcoded in common but each service needs its own title; made configurable via `openapi.title` and `openapi.version` properties with sensible defaults
